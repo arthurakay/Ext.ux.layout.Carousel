@@ -12,6 +12,8 @@ This is a Sencha workspace, with two example apps. To keep the GitHub repo small
 
 You'll have to add those on your own or edit the sample apps' framework locations to run.
 
+You'll also have to run `sencha app build` inside each sample app in order to have the SASS from `Ext.ux.layout.Carousel` included in the generated CSS.
+
 ### THIS IS A TECH DEMO
 
 While I happen to think this custom "3D Carousel" is cool, I haven't tested it thoroughly and I make no claims that it's solid.

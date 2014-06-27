@@ -13,19 +13,19 @@ Ext.define('Ext.ux.layout.Carousel', {
          * @cfg {number} portalWidth
          * Width of the carousel, in pixels
          */
-        portalWidth  : 0,
+        portalWidth : 0,
 
         /**
          * @cfg {string} direction
          * 'horizontal' or 'vertical'
          */
-        direction    : 'horizontal' //or 'vertical'
+        direction : 'horizontal' //or 'vertical'
     },
 
     setContainer : function (container) {
         var me = this;
 
-        me.callSuper(arguments);
+        me.callParent(arguments);
 
         me.rotation = 0;
         me.theta = 0;
@@ -55,37 +55,33 @@ Ext.define('Ext.ux.layout.Carousel', {
         }
 
         me.container.addCls('x-layout-carousel');
-        me.container.on('painted', me.onPaintHandler, me);
+        me.container.on('painted', me.onPaintHandler, me, { single : true });
     },
 
     onPaintHandler : function () {
         var me = this;
 
-        if (me.container.isRendered()) {
-            me.container.un('painted', me.onPaintHandler); //we only need to do this once
+        //add the "ready" class to set the CSS transition state
+        me.container.addCls('x-layout-carousel-ready');
 
-            //add the "ready" class to set the CSS transition state
-            me.container.addCls('x-layout-carousel-ready');
-
-            //set the drag handler on the underlying DOM
-            me.container.element.on({
-                drag      : 'onDrag',
-                dragstart : 'onDragStart',
-                dragend   : 'onDragEnd',
-                scope     : me
-            });
-        }
+        //set the drag handler on the underlying DOM
+        me.container.element.on({
+            drag      : 'onDrag',
+            dragstart : 'onDragStart',
+            dragend   : 'onDragEnd',
+            scope     : me
+        });
 
         me.modifyItems();
     },
 
     onItemAdd : function () {
-        this.callSuper(arguments);
+        this.callParent(arguments);
         this.modifyItems();
     },
 
     onItemRemove : function () {
-        this.callSuper(arguments);
+        this.callParent(arguments);
         this.modifyItems();
     },
 
@@ -123,7 +119,7 @@ Ext.define('Ext.ux.layout.Carousel', {
         var me = this,
             el = me.container.element,
             h = el.dom.offsetHeight,
-            style= el.dom.style;
+            style = el.dom.style;
 
         // push the carousel back in 3D space, and rotate it
         el.down('.x-inner').dom.style[ me.transformProp ] = 'translateZ(-' + me.radius + 'px) ' + me.rotateFn + '(' + me.rotation + 'deg)';

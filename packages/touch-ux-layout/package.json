@@ -1,0 +1,12 @@
+{
+    "name"                : "touch-ux-layout",
+    "type"                : "code",
+    "creator"             : "Arthur Kay (http://www.akawebdesign.com)",
+    "summary"             : "A new layout for Sencha Touch 2.x",
+    "detailedDescription" : "A 'carousel' style layout for Sencha Touch 2.x. Allows both 'vertical' and 'horizontal' carousel rotation of any component.",
+    "version"             : "1.0.0",
+    "compatVersion"       : "1.0.0",
+    "format"              : "1",
+    "local"               : true,
+    "requires"            : []
+}
